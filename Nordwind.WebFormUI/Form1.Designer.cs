@@ -95,6 +95,7 @@ namespace Nordwind.WebFormUI
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(208, 20);
             this.txtProduct.TabIndex = 1;
+            this.txtProduct.TextChanged += new System.EventHandler(this.txtProduct_TextChanged);
             // 
             // label2
             // 

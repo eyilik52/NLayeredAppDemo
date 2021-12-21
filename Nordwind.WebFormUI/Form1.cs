@@ -55,5 +55,18 @@ namespace Nordwind.WebFormUI
             }
             
         }
+
+        private void txtProduct_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtProduct.Text))
+            {
+                DgwProduct.DataSource = _productService.GetProductsByProductName(txtProduct.Text);
+            }
+            else
+            {
+                LoadProduct();
+            }
+            
+        }
     }
 }

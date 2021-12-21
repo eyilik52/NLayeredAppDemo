@@ -10,6 +10,7 @@ namespace Nordwind.Business.Abstruct
     public interface IProductService
     {
         List<Product> GetAll();
-        List<Product> GetProductsByCategory(int categoryId); 
+        List<Product> GetProductsByCategory(int categoryId);
+        List<Product> GetProductsByProductName(string productName);
     }
 }
