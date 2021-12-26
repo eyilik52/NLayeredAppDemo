@@ -25,6 +25,13 @@ namespace Nordwind.Business.ValidationRules.FluentValidation
             //Başlangıçta sıfır, dönüş tipi int olduğu için (short) ekledik.
             RuleFor(p => p.UnitPrice).GreaterThan(10).When(p => p.CategoryId == 2);
             //KategoriId 2 olan ürün 10dan aşağı olamaz.
+
+            RuleFor(p => p.ProductName).Must(StartWithA).WithMessage("Ürün Adı A ile Başlamalı");//Her ürün ismi A harfi ile başlasın methodu yazıldı.
+        }
+
+        private bool StartWithA(string arg)
+        {
+            return arg.StartsWith("A");
         }
     }
 }

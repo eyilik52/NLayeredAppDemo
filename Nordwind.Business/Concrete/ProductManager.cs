@@ -1,4 +1,6 @@
-﻿using Nordwind.Business.Abstruct;
+﻿using FluentValidation;
+using Nordwind.Business.Abstruct;
+using Nordwind.Business.ValidationRules.FluentValidation;
 using Nordwind.DataAccess.Abstruct;
 using Nordwind.DataAccess.Concrete;
 using Nordwind.DataAccess.Concrete.EntityFramework;
@@ -16,13 +18,20 @@ namespace Nordwind.Business.Concrete
     {
         IProductDal _productDal;
         public ProductManager(IProductDal productDal)
-        {
+        {            
             _productDal = productDal; 
         }
 
         public void Add(Product product)
         {
-            _productDal.Add(product);
+            //Validation çağırma alanı
+            ProductValidator productValidator = new ProductValidator();
+            var result =productValidator.Validate(product);
+            if (result.Errors.Count>0)
+            {
+                throw new ValidationException(result.Errors);
+            }
+            _productDal.Add(product);//önceden sadece bu kod bloğu vardı
         }
 
         public void Delete(Product product)

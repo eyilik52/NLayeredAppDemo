@@ -80,17 +80,27 @@ namespace Nordwind.WebFormUI
 
         private void btnProductAdd_Click(object sender, EventArgs e)
         {
-            _productService.Add(new Product
+            try
             {
-                CategoryId = Convert.ToInt32(cbxCategoryName.SelectedValue),
-                ProductName = txtProductName.Text,
-                QuantityPerUnit = tbxQuantityPerUnit.Text,
-                UnitPrice = Convert.ToDecimal(txtProductPrice.Text),
-                UnitsInStock = Convert.ToInt16(tbxProductStock.Text)
-            }
+                _productService.Add(new Product
+                {
+                    CategoryId = Convert.ToInt32(cbxCategoryName.SelectedValue),
+                    ProductName = txtProductName.Text,
+                    QuantityPerUnit = tbxQuantityPerUnit.Text,
+                    UnitPrice = Convert.ToDecimal(txtProductPrice.Text),
+                    UnitsInStock = Convert.ToInt16(tbxProductStock.Text)
+                }
                 );
-            LoadProduct();
-            MessageBox.Show("Ürün Kaydedildi!...");
+                LoadProduct();
+                MessageBox.Show("Ürün Kaydedildi!...");
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+
+            
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
